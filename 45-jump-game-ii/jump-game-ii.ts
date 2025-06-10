@@ -1,7 +1,6 @@
 function jump(nums: number[]): number {
   let pos: number = 0;
   let jumps: number = 0;
-  const path: number[] = [0];
   if(nums.length <= 1  ){
     return 0;
   }
@@ -18,8 +17,7 @@ function jump(nums: number[]): number {
     }
     // Find the position that can reach farthest within current jump range
     for (let i = pos + 1; i <= Math.min(pos + nums[pos], nums.length - 1); i++) {
-      if (i + nums[i] > farthest) {
-        
+      if (i + nums[i] > farthest) {   
         farthest = i + nums[i];
         nextPos = i;
       }
@@ -27,7 +25,6 @@ function jump(nums: number[]): number {
     
     pos = nextPos;
     jumps++;
-    path.push(pos);
   }
   return jumps;
 };
