@@ -35,8 +35,7 @@ class RandomizedSet {
     }
 
     getRandom(): number {
-        const randIndex = Math.floor(Math.random() *this.length);
-        return this.values[randIndex];
+        return this.values[Math.floor(Math.random() *this.length)];
     }
 }
 
