@@ -1,38 +1,38 @@
 class RandomizedSet {
-    list:number[];
-    length:number;
-    constructor() {
-        this.list  =[];
-        this.length = 0;
-    }
-    v
-    insert(val: number): boolean {
-        for(let i:number =0;i<this.length;i++){
-            if(this.list[i] === val){
-                return false
-            }
-        }
-        this.list[this.length++] = val
-        return true;
+    private valToIndex: Map<number, number>;
+    private values: number[];
 
+    constructor() {
+        this.valToIndex = new Map();
+        this.values = [];
     }
-    printList():void{
-        console.log(this.list)
+
+    insert(val: number): boolean {
+        if (this.valToIndex.has(val)) return false;
+
+        this.values.push(val);
+        this.valToIndex.set(val, this.values.length - 1);
+        return true;
     }
+
     remove(val: number): boolean {
-          for(let i:number =0;i<this.length;i++){
-            if(this.list[i] === val){
-              this.list.splice(i,1)
-              this.length --;
-              return true
-            }
-        }
-          return false;
+        if (!this.valToIndex.has(val)) return false;
+
+        const indexToRemove = this.valToIndex.get(val)!;
+        const lastElement = this.values[this.values.length - 1];
+
+        this.values[indexToRemove] = lastElement;
+        this.valToIndex.set(lastElement, indexToRemove);
+
+        this.values.pop();
+        this.valToIndex.delete(val);
+
+        return true;
     }
 
     getRandom(): number {
-       const randIndex = Math.floor(Math.random() * this.length);
-        return this.list[randIndex];
+        const randIndex = Math.floor(Math.random() * this.values.length);
+        return this.values[randIndex];
     }
 }
 
