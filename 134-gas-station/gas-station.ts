@@ -8,23 +8,19 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
     if(sumGas < sumCost){
         return -1;
     }    
-    let startingStationIndex : number  = -1;
     let carTank : number = 0;
     let path:number[] = [];
     for(let i:number = 0;i<gas.length;i++){
         carTank += gas[i]
-        let remainigGasAfterTravel :number = carTank - cost[i]
-            console.log(remainigGasAfterTravel)
-
-        if(remainigGasAfterTravel >= 0){
-            carTank = remainigGasAfterTravel
+        carTank = carTank - cost[i]
+        if(carTank >= 0){
            path.push(i)
         }else{
             carTank = 0
             path=[]
         }
     }
-    console.log(path)
+ 
     if(path){
         return path[0] 
     }else{
