@@ -1,33 +1,18 @@
 function canCompleteCircuit(gas: number[], cost: number[]): number {
-    let sumGas : number = 0;
-    let sumCost :number =0 ;
-    // for(let i:number = 0;i<gas.length;i++){
-    //     sumGas +=gas[i]
-    //     sumCost += cost[i]
-    // }
-    // if(sumGas < sumCost){
-    //     return -1;
-    // }    
-    let carTank : number = 0;
-    let path:number[] = [];
-    for(let i:number = 0;i<gas.length;i++){
-        carTank += gas[i]
-        carTank = carTank - cost[i]
-             sumGas +=gas[i]
-        sumCost += cost[i]
-        if(carTank >= 0){
-           path.push(i)
-        }else{
-            carTank = 0
-            path=[]
+    let totalTank = 0;
+    let currTank = 0;
+    let startIndex = 0;
+
+    for (let i = 0; i < gas.length; i++) {
+        const diff = gas[i] - cost[i];
+        totalTank += diff;
+        currTank += diff;
+
+        if (currTank < 0) {
+            currTank = 0;
+            startIndex = i + 1;
         }
     }
-  if(sumGas < sumCost){
-        return -1;
-    }   
-    if(path .length > 0){
-        return path[0] 
-    }else{
-        return -1
-    }
+
+    return totalTank >= 0 ? startIndex : -1;
 };
