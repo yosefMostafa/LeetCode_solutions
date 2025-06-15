@@ -21,9 +21,7 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
         }
     }
  
-    if(path){
+  
         return path[0] 
-    }else{
-        return -1
-    }
+    
 };
