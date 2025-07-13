@@ -1,7 +1,5 @@
 public class Solution {
-    private int bIndex = 0;
-    private int endBIndex = -1;
-    private int totalWaterTrapped = 0;
+
 
     public int Trap(int[] height) {
        int left = 0, right = height.Length - 1;
