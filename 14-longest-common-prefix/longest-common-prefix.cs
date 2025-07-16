@@ -1,20 +1,21 @@
 public class Solution {
     public string LongestCommonPrefix(string[] strs) {
-         if (strs == null || strs.Length == 0)
+          if (strs == null || strs.Length == 0)
             return "";
 
-        string prefix = strs[0];
+        int minLength = strs.Min(s => s.Length);
 
-        for (int i = 1; i < strs.Length; i++)
+        for (int i = 0; i < minLength; i++)
         {
-            while (strs[i].IndexOf(prefix) != 0)
+            char currentChar = strs[0][i];
+
+            for (int j = 1; j < strs.Length; j++)
             {
-                prefix = prefix.Substring(0, prefix.Length - 1);
-                if (string.IsNullOrEmpty(prefix))
-                    return "";
+                if (strs[j][i] != currentChar)
+                    return strs[0].Substring(0, i);
             }
         }
 
-        return prefix;
+        return strs[0].Substring(0, minLength);
     }
 }
