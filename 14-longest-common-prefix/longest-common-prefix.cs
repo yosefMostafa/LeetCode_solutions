@@ -9,7 +9,6 @@ public class Solution {
         {
             while (strs[i].IndexOf(prefix) != 0)
             {
-                Console.WriteLine(prefix);
                 prefix = prefix.Substring(0, prefix.Length - 1);
                 if (string.IsNullOrEmpty(prefix))
                     return "";
