@@ -2,15 +2,26 @@ using System.Text.RegularExpressions;
 
 public class Solution {
     public bool IsPalindrome(string s) {
-        s = s.ToLower();
-        Regex rgx = new Regex("[^a-z0-9]");
-        s = rgx.Replace(s, "");
-        int strtingLength = s.Length;
-        for(int i = 0 ;i < strtingLength ; i++){
-            if(s[i] != s[strtingLength - i -1]){
+       
+        int left = 0;
+        int right = s.Length - 1;
+
+        while (left < right)
+        {
+            // Skip non-alphanumeric characters
+            while (left < right && !char.IsLetterOrDigit(s[left]))
+                left++;
+            while (left < right && !char.IsLetterOrDigit(s[right]))
+                right--;
+
+            // Compare characters (ignoring case)
+            if (char.ToLower(s[left]) != char.ToLower(s[right]))
                 return false;
-            }
+
+            left++;
+            right--;
         }
+
         return true;
     }
 }
