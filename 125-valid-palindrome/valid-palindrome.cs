@@ -8,13 +8,11 @@ public class Solution {
 
         while (left < right)
         {
-            // Skip non-alphanumeric characters
             while (left < right && !char.IsLetterOrDigit(s[left]))
                 left++;
             while (left < right && !char.IsLetterOrDigit(s[right]))
                 right--;
 
-            // Compare characters (ignoring case)
             if (char.ToLower(s[left]) != char.ToLower(s[right]))
                 return false;
 
