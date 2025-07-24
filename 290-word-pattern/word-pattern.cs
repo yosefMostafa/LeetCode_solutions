@@ -4,7 +4,6 @@ public class Solution {
         if(words.Count() != pattern.Length)
             return false;
         Dictionary<char, string> mapST = new Dictionary<char, string>();
-        HashSet<string> mappedValues = new HashSet<string>();
         for(int i = 0; i< pattern.Length;i++){
             char key = pattern[i];
             string value = words[i];
@@ -12,10 +11,9 @@ public class Solution {
                 if(mapST[key] != value)
                     return false;
             }else{
-                if(mappedValues.Contains(value))
+                if(mapST.ContainsValue(value))
                     return  false;
                 mapST[key] = value;
-                mappedValues.Add(value);
             }
         }
         return true;
