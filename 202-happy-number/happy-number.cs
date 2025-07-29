@@ -1,7 +1,7 @@
 public class Solution {
     public bool IsHappy(int n) {
         string InitialNum = n.ToString();
-        List<int> seen = [];
+        HashSet<int> seen = new HashSet<int>();
         while(true){
         
         int sum = 0;
@@ -9,13 +9,11 @@ public class Solution {
             int num = int.Parse(InitialNum[i].ToString());
             sum += num * num;
         }
-      
-      
-        if(seen.Contains(sum)  )
-            return false;
         if(sum == 1)
             return true; 
-        seen.Add(sum);
+        if(!seen.Add(sum))
+            return false;
+       
         InitialNum = sum.ToString();
         }
        
