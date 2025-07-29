@@ -11,7 +11,7 @@ public class Solution {
         }
       
       
-        if(seen.Contains(sum) && seen.Count > 1  )
+        if(seen.Contains(sum)  )
             return false;
         if(sum == 1)
             return true; 
