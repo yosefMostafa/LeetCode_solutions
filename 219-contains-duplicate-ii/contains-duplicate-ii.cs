@@ -5,9 +5,6 @@ public class Solution {
         if(foundValues.ContainsKey(nums[i]))
             if(i - foundValues[nums[i]] <= k)
                 return true;
-            else
-                foundValues[nums[i]] = i;
-        else
             foundValues[nums[i]] = i;
      }
        
