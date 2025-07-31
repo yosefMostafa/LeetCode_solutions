@@ -1,30 +1,31 @@
 public class Solution {
     public bool IsValid(string s) {
-        Stack<char>  parenthesesOrder = new Stack<char>();
-        Dictionary<char, char> relatedParentheses = new Dictionary<char, char>();
-        relatedParentheses['{'] = '}';
-        relatedParentheses['['] = ']';
-        relatedParentheses['('] = ')';
-        if(s.Length == 1)
-            return false;
-        foreach(char parentheses in s){
-            if(parenthesesOrder.Count != 0 && relatedParentheses.ContainsValue(parentheses)){
-                    char scope  = parenthesesOrder.Peek();
-                    if(relatedParentheses[scope] == parentheses)
-                        parenthesesOrder.Pop();
-                    else
-                        return false;
-                    
-            }else{
-                if(relatedParentheses.ContainsValue(parentheses))
-                    return false;
-                parenthesesOrder.Push(parentheses);
+           if (string.IsNullOrEmpty(s) || s.Length % 2 != 0)
+        return false;
 
-            }
+    Stack<char> stack = new Stack<char>();
+    Dictionary<char, char> pairs = new Dictionary<char, char>
+    {
+        {')', '('},
+        {']', '['},
+        {'}', '{'}
+    };
+
+    foreach (char c in s)
+    {
+        if (pairs.ContainsKey(c)) // Closing parenthesis
+        {
+            if (stack.Count == 0 || stack.Peek() != pairs[c])
+                return false;
+
+            stack.Pop();
         }
-        if(parenthesesOrder.Count == 0)
-            return true;
-        else 
-            return false;
+        else // Opening parenthesis
+        {
+            stack.Push(c);
+        }
+    }
+
+    return stack.Count == 0;
     }
 }
